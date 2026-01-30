@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Split Brain — Privacy & Info</title>
+  <meta name="description" content="Split-screen arcade game that trains both sides of your brain with dual thumb controls." />
+  <style>
+    :root{
+      --bg: #0E0E12;          /* dark, matches logo border vibe */
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --muted2: rgba(255,255,255,0.58);
+      --shadow: 0 20px 60px rgba(0,0,0,0.55);
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;
+      background: radial-gradient(900px 600px at 20% 10%, rgba(80,120,255,0.10), transparent 55%),
+                  radial-gradient(800px 700px at 80% 30%, rgba(255,80,120,0.10), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 28px 16px;
+    }
+
+    .wrap{
+      width: min(980px, 100%);
+      display:grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 18px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .hero{
+      padding: 22px 22px 18px;
+      display:flex;
+      gap: 18px;
+      align-items:center;
+    }
+
+    .logoBox{
+      width: 110px;
+      height: 110px;
+      flex: 0 0 auto;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.10);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    .logoBox img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display:block;
+    }
+
+    h1{
+      margin:0;
+      font-size: 28px;
+      letter-spacing: 0.2px;
+      line-height: 1.15;
+    }
+
+    .subtitle{
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.35;
+      font-size: 14.5px;
+    }
+
+    .content{
+      padding: 0 22px 22px;
+    }
+
+    .pillRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .pill{
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.80);
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      user-select:none;
+    }
+
+    .right{
+      padding: 20px 22px 22px;
+    }
+
+    h2{
+      margin: 0 0 10px;
+      font-size: 16px;
+      letter-spacing: 0.2px;
+    }
+
+    p{
+      margin: 0 0 10px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14.5px;
+    }
+
+    .list{
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      display:grid;
+      gap: 10px;
+    }
+
+    .item{
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .item strong{ color: rgba(255,255,255,0.90); }
+
+    .footer{
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items:center;
+      justify-content:space-between;
+      color: var(--muted2);
+      font-size: 12.5px;
+    }
+
+    a{
+      color: rgba(180,205,255,0.95);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(180,205,255,0.35);
+    }
+    a:hover{ border-bottom-color: rgba(180,205,255,0.75); }
+
+    .btn{
+      display:inline-block;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.92);
+      font-weight: 600;
+      font-size: 13.5px;
+      text-decoration:none;
+    }
+    .btn:hover{ background: rgba(255,255,255,0.09); }
+
+    @media (max-width: 860px){
+      .wrap{ grid-template-columns: 1fr; }
+      .hero{ align-items:flex-start; }
+      .logoBox{ width: 92px; height: 92px; border-radius: 20px; }
+      h1{ font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+
+    <!-- LEFT: Logo + description -->
+    <section class="card">
+      <div class="hero">
+        <div class="logoBox" aria-label="Game logo">
+          <!-- Replace logo.png with your file name (keep it in same folder as this HTML) -->
+          <img src="logo.png" alt="Game logo" />
+        </div>
+
+        <div>
+          <h1>Split Brain</h1>
+          <div class="subtitle">
+            A split-screen arcade game that trains both sides of your brain by making you control
+            two characters at the same time.
+          </div>
+
+          <div class="pillRow" aria-label="Highlights">
+            <span class="pill">Dual-thumb control</span>
+            <span class="pill">Split-screen gameplay</span>
+            <span class="pill">Skill & focus</span>
+            <span class="pill">Power-ups</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <p>
+          One character climbs up by landing on platforms, while the other descends by finding gaps.
+          The challenge is coordinating both sides at once — simple to learn, hard to master.
+        </p>
+        <p>
+          Built for quick sessions, smooth difficulty ramp, and that “one more run” feeling.
+        </p>
+
+        <div class="footer">
+          <div>© <span id="year"></span> Split Brain</div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <!-- You can replace # with your store / social links later -->
+            <a class="btn" href="#" onclick="return false;">Play Store (soon)</a>
+            <a class="btn" href="#" onclick="return false;">Contact</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT: Quick info / privacy-friendly notes -->
+    <aside class="card right">
+      <h2>Quick Info</h2>
+      <ul class="list">
+        <li class="item"><strong>Gameplay:</strong> Two characters, one screen — you control both simultaneously.</li>
+        <li class="item"><strong>Sessions:</strong> Fast runs, score-based progression.</li>
+        <li class="item"><strong>Monetization:</strong> Free to play, optional one-time “Remove Ads” purchase.</li>
+        <li class="item"><strong>Privacy:</strong> The game itself doesn’t collect personal data directly.</li>
+      </ul>
+
+      <div class="footer" style="margin-top:16px;">
+        <div>
+          Google services (Ads/Billing) may process data per:
+          <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">Google Privacy Policy</a>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
